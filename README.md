@@ -1,4 +1,4 @@
-# Hult Program Admin API
+# ProgramFlow API
 
 This project is a TypeScript-based Express API for managing executive education programs. It supports full CRUD operations, validation, and role-based access control, all powered by DynamoDB Local.
 
@@ -99,9 +99,3 @@ DYNAMODB_REGION=us-east-1
 DYNAMODB_ENDPOINT=http://localhost:8000
 TABLE_NAME=Programs
 
-
-## 🙏 Thank You
-
-Thank you for this opportunity to demonstrate my skills. I truly enjoyed working on this technical challenge and ensuring everything was built with care, scalability, and best practices in mind.
-
-— Polimera Sai Jaisheel
