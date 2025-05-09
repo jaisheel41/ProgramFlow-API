@@ -17,10 +17,11 @@ export const addProgram = async (program: Program): Promise<void> => {
 };
 
 export const updateProgram = async (id: number, updates: Partial<Program>): Promise<void> => {
-  const keys = Object.keys(updates);
+  const keys = Object.keys(updates); // Gets the fields the user wants to update
   if (keys.length === 0) return;
 
-  const UpdateExpression = 'set ' + keys.map((key, i) => `${key} = :val${i}`).join(', ');
+  const UpdateExpression = 'set ' + keys.map((key, i) => `${key} = :val${i}`).join(', '); 
+  // Dynamic UpdateExpression (Key Concept in DynamoDB) \\\ "set title = :val0, country = :val1"
   const ExpressionAttributeValues = keys.reduce((acc, key, i) => {
     acc[`:val${i}`] = (updates as any)[key];
     return acc;
@@ -29,9 +30,9 @@ export const updateProgram = async (id: number, updates: Partial<Program>): Prom
   await dynamoDB.update({
     TableName: TABLE_NAME,
     Key: { id },
-    UpdateExpression,
+    UpdateExpression, // Used for dynamic field updates without hardcoding field names
     ExpressionAttributeValues
-  }).promise();
+  }).promise(); // Converts AWS SDK callbacks into modern async/await-friendly Promises
 };
 
 
